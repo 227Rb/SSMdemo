@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface HelloDao {
 
-    @Select("Select * from tb_employee where id=1 ")
+    @Select("Select * from tb_employee where id=#{id} ")
     Employee findOne(int id);
 
 }

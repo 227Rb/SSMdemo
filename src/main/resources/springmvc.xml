@@ -21,6 +21,11 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!--配置拦截白名单(防止静态资源的请求被拦截)-->
+    <mvc:resources mapping="${pageContext.request.contextPath}/js/**" location="/js/"/>
+
     <!--配置MVC注解支持-->
     <mvc:annotation-driven/>
+
 </beans>
+

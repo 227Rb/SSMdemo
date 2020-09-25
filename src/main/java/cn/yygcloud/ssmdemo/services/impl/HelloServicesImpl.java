@@ -23,7 +23,7 @@ public class HelloServicesImpl implements HelloServices {
     @Override
     public String find(int id) {
 
-        Employee target = helloDao.findOne(1);
+        Employee target = helloDao.findOne(id);
         return target.getName();
     }
 }

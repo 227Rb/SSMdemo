@@ -28,13 +28,11 @@
             <property name="dataSource" ref="HikairCPDataSource"/>
         </bean>
 
-        <!--&lt;!&ndash;注解式&ndash;&gt;-->
-        <!--<tx:annotation-driven transaction-manager="transactionManager"/>-->
+        <!--注解式-->
+        <tx:annotation-driven transaction-manager="transactionManager"/>
 
 
 <!--setting services end-->
-
-
 
 <!--setting dao start-->
     <!--配置连接池-->
