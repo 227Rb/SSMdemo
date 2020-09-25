@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+	    http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+<!--setting service start-->
+    <!--组件扫描配置-->
+    <context:component-scan base-package="cn.yygcloud.ssmdemo">
+        <!--不扫描 MVC相关注解-->
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+
+    <!--配置数据库事务管理-->
+        <!--配置事务管理器-->
+        <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+            <property name="dataSource" ref="HikairCPDataSource"/>
+        </bean>
+
+        <!--&lt;!&ndash;注解式&ndash;&gt;-->
+        <!--<tx:annotation-driven transaction-manager="transactionManager"/>-->
+
+
+<!--setting services end-->
+
+
+
+<!--setting dao start-->
+    <!--配置连接池-->
+    <context:property-placeholder location="classpath:HikairCP.properties"/>
+    <bean id="HikairCPDataSource" class="${jdbc.dataSoures}">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}" />
+    </bean>
+    <!--配置SqlSessionFactory-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="HikairCPDataSource"/>
+    </bean>
+    <!--配置扫描接口-->
+    <bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="cn.yygcloud.ssmdemo.dao"/>
+    </bean>
+<!--setting dao end-->
+
+</beans>
