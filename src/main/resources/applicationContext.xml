@@ -34,9 +34,11 @@
 
 <!--setting services end-->
 
+    <!--扫描配置内的所有资源文件-->
+    <context:property-placeholder location="classpath:*.properties"/>
+
 <!--setting dao start-->
     <!--配置连接池-->
-    <context:property-placeholder location="classpath:HikairCP.properties"/>
     <bean id="HikairCPDataSource" class="${jdbc.dataSoures}">
         <property name="driverClassName" value="${jdbc.driverClassName}"/>
         <property name="jdbcUrl" value="${jdbc.url}"/>
@@ -53,4 +55,9 @@
     </bean>
 <!--setting dao end-->
 
+    <!--加载配置文件-->
+
+    <import resource="spring-redis.xml"/>
+
 </beans>
+

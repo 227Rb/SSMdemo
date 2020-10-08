@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.lang.Nullable;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -92,6 +93,9 @@ public class JsonUtils {
         Map<String,String>exMsg=new HashMap<>();
         exMsg.put("code",ex.getEe().getCode().toString());
         exMsg.put("msg",ex.getEe().getMsg());
+        if(!StringUtils.isEmpty(ex.getExMsg())){
+            exMsg.put("exMsg",ex.getExMsg());
+        }
         try {
             return mapper.writeValueAsString(exMsg);
         } catch (JsonProcessingException e) {

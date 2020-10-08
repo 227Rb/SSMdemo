@@ -25,7 +25,12 @@
     <mvc:resources mapping="${pageContext.request.contextPath}/js/**" location="/js/"/>
 
     <!--配置MVC注解支持-->
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven validator="validator"/>
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator"></property>
+    </bean>
+
+
 
 </beans>
 

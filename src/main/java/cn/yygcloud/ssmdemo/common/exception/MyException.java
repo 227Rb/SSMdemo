@@ -13,10 +13,17 @@ import lombok.NoArgsConstructor;
  * @date: 2020/9/25 18:53
  * @version: V1.0
  */
-@AllArgsConstructor
+
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 public class MyException extends RuntimeException {
     private ExceptionEnum ee;
+    private String exMsg;
+
+    public MyException(ExceptionEnum ee){
+        this.ee=ee;
+    }
+
 
 }
